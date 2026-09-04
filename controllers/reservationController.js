@@ -26,7 +26,6 @@ const createReservation = async (req, res) => {
   }
 };
 
-// GET /api/reservations/user (Get reservations made by the logged-in user)
 const getUserReservations = async (req, res) => {
   try {
     const reservations = await Reservation.find({ user: req.user.id })
@@ -37,10 +36,9 @@ const getUserReservations = async (req, res) => {
   }
 };
 
-// GET /api/reservations/host (Get all reservations for the host dashboard)
+// Getting all reservations for the host dashboard)
 const getHostReservations = async (req, res) => {
   try {
-    // Populates user info so "Booked by" renders correctly in the table
     const reservations = await Reservation.find()
       .populate('user', 'username email');
     res.json(reservations);
@@ -49,7 +47,6 @@ const getHostReservations = async (req, res) => {
   }
 };
 
-// DELETE /api/reservations/:id (Delete/cancel a reservation)
 const deleteReservation = async (req, res) => {
   try {
     const { id } = req.params;

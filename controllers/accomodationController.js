@@ -2,7 +2,6 @@
 
 const Accommodation = require('../models/Accommodation');
 
-// GET all accommodations
 const getAllAccommodations = async (req, res) => {
   try {
     const accommodations = await Accommodation.find();
@@ -12,10 +11,8 @@ const getAllAccommodations = async (req, res) => {
   }
 };
 
-// POST create new accommodation (Protected)
 const createAccommodation = async (req, res) => {
   try {
-    // Extract data from request body
     const {
       title,
       location,
@@ -35,7 +32,7 @@ const createAccommodation = async (req, res) => {
       reviews
     } = req.body;
 
-    // Validate required fields
+    // Validating required fields
     if (!title || !location || !description || !bedrooms || !bathrooms || 
         !guests || !type || !price) {
       return res.status(400).json({ 
@@ -43,7 +40,6 @@ const createAccommodation = async (req, res) => {
       });
     }
 
-    // Create new accommodation
     const newAccommodation = new Accommodation({
       title,
       location,
@@ -61,11 +57,11 @@ const createAccommodation = async (req, res) => {
       occupancyTaxes: occupancyTaxes || 0,
       rating: rating || 0,
       reviews: reviews || 0,
-      host: req.user.username,      // From auth middleware
-      host_id: req.user.id          // From auth middleware
+      host: req.user.username,      
+      host_id: req.user.id          
     });
 
-    // Save to database
+    // Saving to database
     const savedAccommodation = await newAccommodation.save();
     res.status(201).json(savedAccommodation);
 

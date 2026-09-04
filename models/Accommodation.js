@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// 1. Define the schema first
+// Defining schema first
 const AccommodationSchema = new mongoose.Schema({
   title: { type: String, required: true },
   location: { type: String, required: true },

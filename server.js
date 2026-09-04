@@ -49,12 +49,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Routes matching the rubric requirements
+// Routes as per rubric says
 app.use('/api/users', userRoutes);
 app.use('/api/accommodations', accommodationRoutes);
 app.use('/api/reservations', reservationRoutes);
 
-// MongoDB connection & server listen
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://Ceede-code:Langelihle10@thato.5ehud2a.mongodb.net/ ';
 
